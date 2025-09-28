@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk
+FROM docker.io/library/openjdk:17-jdk
 
 # JAR 파일이 저장된 작업 디렉토리 설정
 WORKDIR /app
