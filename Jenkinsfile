@@ -12,7 +12,7 @@ pipeline {
         PORT = "8081"
 
         REMOTE_USER = "root"
-        REMOTE_HOST = "10.10.11.65"
+        REMOTE_HOST = "10.10.11.171"
         REMOTE_DIR = "/root/deploy"
         SSH_CREDENTIALS_ID = "jenkins-rsa-key"
     }
