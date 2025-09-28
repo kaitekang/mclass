@@ -48,14 +48,14 @@ pipeline {
         stage('Remove Docker Build & Deploy') {
             steps {
                 sshagent (credentials: [env.SSH_CREDENTIALS_ID]) {
-                     sh """
-                     ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${REMOTE_USER}@${REMOTE_HOST} << 'ENDSSH'
-                            cd ${REMOTE_DIR} || exit 1
-                            podman rm -f ${CONTAINER_NAME} || true
-                            podman build -t ${DOCKER_IMAGE} .
-                            podman run -d --name ${CONTAINER_NAME} -p ${PORT}:${PORT} ${DOCKER_IMAGE}
-                     ENDSSH
-                     """
+sh """
+ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${REMOTE_USER}@${REMOTE_HOST} << 'ENDSSH'
+cd ${REMOTE_DIR} || exit 1
+podman rm -f ${CONTAINER_NAME} || true
+podman build -t ${DOCKER_IMAGE} .
+podman run -d --name ${CONTAINER_NAME} -p ${PORT}:${PORT} ${DOCKER_IMAGE}
+ENDSSH
+"""
                 }
             }
         }
